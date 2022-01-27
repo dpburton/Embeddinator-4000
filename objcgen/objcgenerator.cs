@@ -141,19 +141,23 @@ namespace Embeddinator.ObjC {
 			var assembly = a.Assembly;
 			var types = Processor.Types;
 
-			foreach (var t in types.Where ((arg) => arg.IsEnum && arg.Assembly == a)) {
+			foreach (var t in types.Where ((arg) => arg.IsEnum && arg.Assembly == a && arg.TypeName.Contains("AntiCorruptionLayer"))) {
 				GenerateEnum (t);
 			}
 
-			foreach (var t in types.Where ((arg) => arg.IsProtocol && arg.Assembly == a)) {
+			foreach (var t in types.Where ((arg) => arg.IsProtocol && arg.Assembly == a && arg.TypeName.Contains("AntiCorruptionLayer"))) {
+				if (!t.TypeName.Contains("AntiCorruptionLayer"))
+				{
+					continue;
+				}
 				GenerateProtocol (t);
 			}
 
-			foreach (var t in types.Where ((arg) => arg.IsClass && arg.Assembly == a)) {
+			foreach (var t in types.Where ((arg) => arg.IsClass && arg.Assembly == a && arg.TypeName.Contains("AntiCorruptionLayer"))) {
 				Generate (t);
 			}
 
-			foreach (var extension in extensions_methods) {
+			foreach (var extension in extensions_methods.Where(method => method.Key.FullName.Contains("AntiCorruptionLayer"))) {
 				var defining_type = extension.Key;
 				if (defining_type.Assembly != assembly)
 					continue;

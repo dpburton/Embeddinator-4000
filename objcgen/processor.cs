@@ -43,7 +43,7 @@ namespace Embeddinator.ObjC {
 
 			Logger.Log ($"Processing Assembly: {a.Name}");
 
-			foreach (var t in GetTypes (a.Assembly)) {
+			foreach (var t in GetTypes (a.Assembly).Where(acl => acl.FullName.Contains("AntiCorruptionLayer"))) {
 				var pt = new ProcessedType (t) {
 					Assembly = a,
 				};

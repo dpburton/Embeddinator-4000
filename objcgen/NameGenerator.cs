@@ -77,6 +77,10 @@ namespace Embeddinator.ObjC {
 
 			switch (Type.GetTypeCode (t)) {
 			case TypeCode.Object:
+				if (!t.FullName.Contains("."))
+				{
+					return t.Name;
+				}
 				switch (t.Namespace) {
 				case "System":
 					switch (t.Name) {
