@@ -1,3 +1,8 @@
+This is a fork of the Emberddinator-4000. I have a project that has a lot of assemblies and the assemblies use a 
+lot of features of C# that are not supported in the main for of Emberddinator-4000. I have added an Anti Corruption Layer
+feature. Binding is only done with classes, enums, etc. that are in an "AntiCorruptionLayer" namespace. This allows the assemblies
+to be used, and to create an interface that only uses supported c# features into the rest of the assembly.
+
 ![Embeddinator-4000 Logo](e4000-logo.png)
 
 Embeddinator-4000 is a tool to turn existing .NET libraries into
