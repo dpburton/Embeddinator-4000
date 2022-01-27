@@ -20,7 +20,7 @@
     <Optimize>false</Optimize>
     <OutputPath>../lib/Debug\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Debug/Embeddinator-4000\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Debug\Embeddinator-4000</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +32,7 @@
     <Optimize>true</Optimize>
     <OutputPath>../lib/Release\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Release/Embeddinator-4000\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Release\Embeddinator-4000</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -218,10 +218,6 @@
     <ProjectReference Include="CppSharp.Parser.CSharp.csproj">
       <Project>{70148081-5C0E-A9D3-457B-3FE431140F40}</Project>
       <Name>CppSharp.Parser.CSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="Xamarin.Android.Tools.csproj">
-      <Project>{83A10A50-EF0D-C64A-B801-5EA8242DE8B2}</Project>
-      <Name>Xamarin.Android.Tools</Name>
     </ProjectReference>
     <ProjectReference Include="Xamarin.MacDev.csproj">
       <Project>{F329EB84-DFF7-DE8A-C88B-4FB1B4F8BAEF}</Project>

@@ -11,6 +11,7 @@
     <AssemblyName>IKVM.Reflection</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath>..\obj\Debug\IKVM.Reflection</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -19,7 +20,7 @@
     <Optimize>false</Optimize>
     <OutputPath>../lib/Debug\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Debug/IKVM.Reflection\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Debug\IKVM.Reflection</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -31,7 +32,7 @@
     <Optimize>true</Optimize>
     <OutputPath>../lib/Release\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Release/IKVM.Reflection\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Release\IKVM.Reflection</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

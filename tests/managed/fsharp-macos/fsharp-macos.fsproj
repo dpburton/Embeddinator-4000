@@ -26,8 +26,9 @@
     <UseSGen>false</UseSGen>
     <PlatformTarget></PlatformTarget>
     <HttpClientHandler></HttpClientHandler>
-    <LinkMode></LinkMode>
+    <LinkMode>None</LinkMode>
     <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -42,8 +43,9 @@
     <GenerateTailCalls>true</GenerateTailCalls>
     <PlatformTarget></PlatformTarget>
     <HttpClientHandler></HttpClientHandler>
-    <LinkMode></LinkMode>
+    <LinkMode>None</LinkMode>
     <XamMacArch></XamMacArch>
+    <AOTMode>None</AOTMode>
   </PropertyGroup>
   <Import Project="..\fsharp-shared\fsharp-shared.projitems" Label="Shared" Condition="Exists('..\fsharp-shared\fsharp-shared.projitems')" />
   <ItemGroup>

@@ -11,6 +11,7 @@
     <AssemblyName>CppSharp</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <BaseIntermediateOutputPath>..\obj\Debug\CppSharp</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -19,7 +20,7 @@
     <Optimize>false</Optimize>
     <OutputPath>../lib/Debug\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Debug/CppSharp\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Debug\CppSharp</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +33,7 @@
     <Optimize>true</Optimize>
     <OutputPath>../lib/Release\</OutputPath>
     <BaseIntermediateOutputPath>../obj/Release/CppSharp\</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)</IntermediateOutputPath>
+    <IntermediateOutputPath>..\obj\Release\CppSharp</IntermediateOutputPath>
     <DefineConstants></DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
