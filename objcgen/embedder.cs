@@ -358,7 +358,7 @@ namespace Embeddinator.ObjC
 					break;
 				case Platform.iOS:
 					build_infos = new BuildInfo[] {
-					new BuildInfo { Sdk = "iPhoneOS", Architectures = new string [] { "armv7", "armv7s", "arm64" }, SdkName = "iphoneos", MinVersion = "8.0", XamariniOSSDK = "MonoTouch.iphoneos.sdk", CompilerFlags = GetBitcodeFlag(defaultsToEnable: false), LinkerFlags = GetBitcodeFlag(defaultsToEnable: false) },
+					new BuildInfo { Sdk = "iPhoneOS", Architectures = new string [] { /*"armv7", "armv7s",*/ "arm64" }, SdkName = "iphoneos", MinVersion = "8.0", XamariniOSSDK = "MonoTouch.iphoneos.sdk", CompilerFlags = GetBitcodeFlag(defaultsToEnable: false), LinkerFlags = GetBitcodeFlag(defaultsToEnable: false) },
 					new BuildInfo { Sdk = "iPhoneSimulator", Architectures = new string [] { "i386", "x86_64" }, SdkName = "ios-simulator", MinVersion = "8.0", XamariniOSSDK = "MonoTouch.iphonesimulator.sdk" },
 				};
 					break;
@@ -437,6 +437,7 @@ namespace Embeddinator.ObjC
 			 */
 
 			foreach (var build_info in build_infos) {
+				lipo_files.Clear();
 				foreach (var arch in build_info.Architectures) {
 					var archOutputDirectory = Path.Combine (OutputDirectory, arch);
 					Directory.CreateDirectory (archOutputDirectory);
@@ -477,13 +478,13 @@ namespace Embeddinator.ObjC
 						case Platform.macOSSystem:
 						case Platform.macOSModern:
 						case Platform.macOSFull:
-							common_options.Append ("-I/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/include ");
+							common_options.Append ("-I/Library/Frameworks/Xamarin.Mac.framework/Versions/Current/SDKs/Xamarin.macOS.sdk/include ");
 							common_options.Append ("-DXAMARIN_MAC ");
 							break;
 						case Platform.iOS:
 						case Platform.tvOS:
 						case Platform.watchOS:
-							common_options.Append ($"-I/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/SDKs/{build_info.XamariniOSSDK}/usr/include ");
+							common_options.Append ($"-I/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/SDKs/{build_info.XamariniOSSDK}/include ");
 							common_options.Append ("-DXAMARIN_IOS ");
 							break;
 						default:
@@ -524,7 +525,7 @@ namespace Embeddinator.ObjC
 							options.Append ($"-o ").Append (Utils.Quote (dynamic_ofile)).Append (" ");
 							lipo_files.Add (dynamic_ofile);
 							if (!string.IsNullOrEmpty (build_info.XamariniOSSDK)) {
-								options.Append ($"-L/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/SDKs/{build_info.XamariniOSSDK}/usr/lib ");
+								options.Append ($"-L/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/SDKs/{build_info.XamariniOSSDK}/lib ");
 								options.Append ("-lxamarin ");
 							}
 							else {
