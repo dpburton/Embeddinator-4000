@@ -58,6 +58,7 @@ namespace Embeddinator.ObjC
 			CurrentEmbedder = embedder;
 
 			var os = new OptionSet {
+				{ "n|name=", "Output name, the name of the resulting framework.", v => embedder.LibraryName = v },
 				{ "c|compile", "Compiles the generated output", v => embedder.CompileCode = true },
 				{ "e|extension", "Compiles the generated output as extension safe api", v => embedder.Extension = true },
 				{ "nativeexception", "Compiles the generated output to throw native exceptions (Apple only)", v => embedder.NativeException = true },
