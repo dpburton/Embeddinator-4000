@@ -127,6 +127,7 @@ namespace Embeddinator.ObjC {
 				return "NSDate *";
 			default:
 				throw new NotImplementedException ($"Converting type {t.Name} to a native type name");
+				// Logger.Log($"NotImplementedException skipping Converting type {t.FullName} to mono code");
 			}
 		}
 
@@ -186,6 +187,7 @@ namespace Embeddinator.ObjC {
 				return "System.DateTime";
 			default:
 				throw new NotImplementedException ($"Converting type {t.Name} to a mono type name");
+				// Logger.Log($"NotImplementedException skipping Converting type {t.FullName} to mono code");
 			}
 		}
 
@@ -219,6 +221,7 @@ namespace Embeddinator.ObjC {
 				return "NSArray <NSDate *> *";
 			default:
 				throw new NotImplementedException ($"Converting type {t.Name} to a native type name");
+				// Logger.Log($"NotImplementedException skipping Converting type {t.FullName} to mono code");
 			}
 		}
 

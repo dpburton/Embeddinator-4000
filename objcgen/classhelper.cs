@@ -140,7 +140,7 @@ namespace Embeddinator.ObjC {
 		void ImplementGetGCHandle ()
 		{
 			implementation.WriteLine ("// for internal embeddinator use only");
-			implementation.WriteLine ("- (int)xamarinGetGCHandle");
+			implementation.WriteLine ("- (GCHandle)xamarinGetGCHandle");
 			implementation.WriteLine ("{");
 			implementation.Indent++;
 			implementation.WriteLine ("return _object->_handle;");

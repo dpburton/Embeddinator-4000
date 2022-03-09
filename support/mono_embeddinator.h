@@ -175,7 +175,7 @@ void* mono_embeddinator_install_error_report_hook(mono_embeddinator_error_report
 struct MonoEmbedObject
 {
     MonoClass* _class;
-    uint32_t _handle;
+    GCHandle _handle;
 };
 
 /**

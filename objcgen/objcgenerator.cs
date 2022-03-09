@@ -46,9 +46,10 @@ namespace Embeddinator.ObjC {
 			implementation.WriteLine ("#include \"glib.h\"");
 			implementation.WriteLine ("#include \"objc-support.h\"");
 			implementation.WriteLine ("#include \"mono_embeddinator.h\"");
-			implementation.WriteLine ("#include \"mono-support.h\"");
 			implementation.WriteLine ();
 
+			// TODO: DPB where should we be getting mono_object_new from?
+			implementation.WriteLine ("MonoObject *mono_object_new(MonoDomain *domain, MonoClass *klass);");
 			implementation.WriteLine ("mono_embeddinator_context_t __mono_context;");
 			implementation.WriteLine ();
 
@@ -435,7 +436,16 @@ namespace Embeddinator.ObjC {
 			if (type.HasProperties) {
 				headers.WriteLine ();
 				foreach (var pi in type.Properties)
-					Generate (pi);
+				{
+					try
+					{
+						Generate(pi);
+					}
+					catch (NotImplementedException e)
+					{
+						Logger.Log($"failed to generate property {pi.Name}: {e.Message}");
+					}
+				}
 			}
 
 			if (type.HasFields) {
@@ -578,6 +588,7 @@ namespace Embeddinator.ObjC {
 				postwriter.Indent--;
 				break;
 			default:
+				// Logger.Log($"NotImplementedException skipping Converting type {t.Name} to a native type name");
 				throw new NotImplementedException ($"Converting type {t.Name} to a native type name");
 			}
 
@@ -717,6 +728,7 @@ namespace Embeddinator.ObjC {
 					implementation.WriteLine ($"mono_array_set ({pnameArr}, MonoObject *, {pnameIdx}, mono_embeddinator_get_object ({pnameRet}, true));");
 				break;
 			default:
+				// Logger.Log($"NotImplementedException skipping Converting type {type.FullName} to mono code");
 				throw new NotImplementedException ($"Converting type {type.FullName} to mono code");
 			}
 
@@ -790,7 +802,8 @@ namespace Embeddinator.ObjC {
 				else if (HasProtocol (t))
 					implementation.WriteLine ($"{argumentName} = {paramaterName} ? mono_embeddinator_get_object ({paramaterName}, true) : nil;");
 				else
-					throw new NotImplementedException ($"Converting type {t.FullName} to mono code");
+					Logger.Log($"NotImplementedException skipping Converting type {t.FullName} to mono code");
+					// throw new NotImplementedException ($"Converting type {t.FullName} to mono code");
 				break;
 			}
 		}
@@ -1066,7 +1079,15 @@ namespace Embeddinator.ObjC {
 				builder = new EquatableHelper (method, headers, implementation);
 				break;
 			default:
-				ImplementMethod (method);
+				try
+				{
+					ImplementMethod(method);
+				}
+				catch (NotImplementedException e)
+				{
+					Logger.Log ( $"{method.BaseName} The feature `{e.Message}` is not currently supported by the tool");
+				}
+
 				return;
 			}
 			builder.WriteHeaders ();
@@ -1164,7 +1185,8 @@ namespace Embeddinator.ObjC {
 				implementation.Indent--;
 				break;
 			default:
-				throw new NotImplementedException ($"Converting type {t.Name} to a native type name");
+				// Logger.Log($"NotImplementedException skipping Converting type {t.Name} to a native type name");
+			throw new NotImplementedException ($"Converting type {t.Name} to a native type name");
 			}
 
 			if (typecode == TypeCode.Byte)
@@ -1237,7 +1259,9 @@ namespace Embeddinator.ObjC {
 				implementation.WriteLine ("return __peer;");
 				break;
 			default:
-				throw new NotImplementedException ($"Returning type {t.Name} from native code");
+				Logger.Log($"NotImplementedException skipping Returning type {t.Name} from native code");
+				// throw new NotImplementedException ($"Returning type {t.Name} from native code");
+				break;
 			}
 		}
 
@@ -1325,6 +1349,7 @@ namespace Embeddinator.ObjC {
 			case TypeCode.DateTime:
 				return string.Format (arrayCreator, "mono_embeddinator_get_datetime_class ()");
 			default:
+				// Logger.Log($"NotImplementedException skipping Converting type {type.FullName} to mono class");
 				throw new NotImplementedException ($"Converting type {type.FullName} to mono class");
 			}
 		}

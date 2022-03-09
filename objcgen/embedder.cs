@@ -741,6 +741,7 @@ namespace Embeddinator.ObjC
 							var mtouch = new StringBuilder ();
 							mtouch.Append (build_info.IsSimulator ? "--sim " : "--dev ");
 							mtouch.Append ($"{Utils.Quote (appdir)} ");
+							mtouch.Append($"--executable={LibraryName} ");
 							mtouch.Append ($"--abi={string.Join (",", build_info.Architectures)} ");
 							mtouch.Append ($"--sdkroot {XcodeApp} ");
 							mtouch.Append ($"--targetver {build_info.MinVersion} ");

@@ -46,6 +46,8 @@ namespace Embeddinator.ObjC {
 				return string.Format (arrayCreator, "mono_embeddinator_get_decimal_class ()");
 			default:
 				throw new NotImplementedException ($"Converting type {type.FullName} to mono class");
+				// Logger.Log($"NotImplementedException skipping Converting type {t.FullName} to mono code");
+
 			}
 		}
 	}
